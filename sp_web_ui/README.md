@@ -4,8 +4,8 @@ A dockerfile with novnc web-interface and ROS2 rolling
 inside the folder:
 
 ```console
-docker build -t ros2_novnc .
-docker run --rm -it -p 5901:5901 -p 6080:6080 ros2_novnc
+docker build -t spweb .
+docker run --rm -it -p 5901:5901 -p 6080:6080 spweb
 ```
 
 And then http://localhost:6080/vnc.html?host=localhost&port=6080 in a browser
