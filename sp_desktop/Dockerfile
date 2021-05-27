@@ -1,4 +1,4 @@
-FROM spbase
+FROM kristoferb/spbase_ros2:rolling
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
  && DEBIAN_FRONTEND=noninteractive apt-get install -qqy \
