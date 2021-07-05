@@ -4,7 +4,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
  && DEBIAN_FRONTEND=noninteractive apt-get install -qqy \
     ros-foxy-desktop \
     python3-pip \
+    nano \
  && rm -rf /var/lib/apt/lists/* \
  && pip3 install -U argcomplete \
- && echo "/opt/ros/foxy/setup.bash" >> ~/.bashrc 
+ && echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc 
 

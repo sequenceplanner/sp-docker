@@ -6,5 +6,5 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
     python3-pip \
  && rm -rf /var/lib/apt/lists/* \
  && pip3 install -U argcomplete \
- && echo "/opt/ros/rolling/setup.bash" >> ~/.bashrc 
+ && echo "source /opt/ros/rolling/setup.bash" >> ~/.bashrc 
 
