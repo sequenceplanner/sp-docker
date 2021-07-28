@@ -3,7 +3,6 @@ FROM kristoferb/spdesktop_ros2:rolling
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
  && DEBIAN_FRONTEND=noninteractive apt-get install -qqy \
     nano \
-    imagemagick \
     mesa-utils \
     net-tools \
     novnc \
@@ -19,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
  && echo "#!/bin/sh\nstartxfce4" > ~/.vnc/xstartup \
  && chmod +x ~/.vnc/xstartup 
 
-COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh 
-#CMD /entrypoint.sh
+COPY entrypoint.sh launch.bash /
+COPY launch.desktop /root/.config/autostart/
+RUN chmod +x entrypoint.sh launch.bash /root/.config/autostart/launch.desktop
+CMD /entrypoint.sh

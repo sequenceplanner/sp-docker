@@ -1,11 +1,11 @@
-# ros2_docker_novnc
+# Web-based desktop to use in SP
 A dockerfile with novnc web-interface and ROS2 rolling
 
 inside the folder:
 
 ```console
-docker build -t ros2_novnc .
-docker run --rm -it -p 5901:5901 -p 6080:6080 ros2_novnc
+docker build -t sp-web .
+docker run --rm -it -p 5901:5901 -p 6080:6080 sp-web
 ```
 
 And then http://localhost:6080/vnc.html?host=localhost&port=6080 in a browser

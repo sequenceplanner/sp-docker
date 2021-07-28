@@ -3,7 +3,6 @@ FROM kristoferb/spdesktop_ros2:foxy
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
  && DEBIAN_FRONTEND=noninteractive apt-get install -qqy \
     nano \
-    imagemagick \
     mesa-utils \
     net-tools \
     novnc \
