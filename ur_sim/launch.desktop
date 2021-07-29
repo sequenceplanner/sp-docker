@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Test        
+Comment=launch ros windows etc
+Exec=bash -c '/launch.bash;$SHELL'
+Icon=utilities-terminal
+Terminal=true 
+Type=Application
+Categories=Application;
