@@ -20,3 +20,8 @@ RUN apt-get update -qqy \
  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
  && rm -rf /var/lib/apt/lists/* 
 
+COPY entrypoint.sh super_client.xml /
+RUN chmod +x /entrypoint.sh / super_client.xml
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]

@@ -10,4 +10,8 @@ RUN apt-get update -qqy \
 
 ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
+COPY entrypoint.sh super_client.xml /
+RUN chmod +x /entrypoint.sh / super_client.xml
 
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]

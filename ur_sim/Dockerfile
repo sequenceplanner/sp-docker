@@ -50,7 +50,6 @@ RUN \
 RUN \
     # cd to ursim folder
     cd /ursim && \
-    mkdir /ursim/programs/ && \
     # Make URControl and all sh files executable
     chmod +x ./*.sh ./URControl && \
     #
@@ -75,6 +74,8 @@ RUN \
     ./install.sh && \
     #
     echo "Installed URSim" && \
+    # fix the start script
+    sed -i 's|rm -f|rm -fr|g' ./start-ursim.sh && \
     rm -rf \
     /tmp/* \
     /var/lib/apt/lists/* \
