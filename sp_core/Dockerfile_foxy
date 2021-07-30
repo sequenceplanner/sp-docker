@@ -1,4 +1,8 @@
 FROM ros:foxy-ros-core-focal
 
+COPY entrypoint.sh super_client.xml /
+RUN chmod +x /entrypoint.sh / super_client.xml
+ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
-
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]
