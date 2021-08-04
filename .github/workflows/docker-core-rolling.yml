@@ -1,9 +1,17 @@
-name: Docker multiarch publish
+name: docker-core-rolling
 
 on:
   push:
+<<<<<<< HEAD:.github/workflows/docker-core-rolling.yml
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+=======
     tags:
        - "m*"
+>>>>>>> master:.github/workflows/docker-multi-build.yml
 
 jobs:
   buildandpush:
@@ -36,4 +44,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/spcore_ros2:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/spcore_ros2:rolling
