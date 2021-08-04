@@ -1,4 +1,4 @@
-name: docker-core-rolling
+name: docker-base-rolling
 
 on:
   workflow_run:
