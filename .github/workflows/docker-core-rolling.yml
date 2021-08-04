@@ -2,11 +2,16 @@ name: docker-core-rolling
 
 on:
   push:
+<<<<<<< HEAD:.github/workflows/docker-core-rolling.yml
     branches:
       - master
   pull_request:
     branches:
       - master
+=======
+    tags:
+       - "m*"
+>>>>>>> master:.github/workflows/docker-multi-build.yml
 
 jobs:
   buildandpush:
