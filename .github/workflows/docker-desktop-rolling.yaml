@@ -2,7 +2,7 @@ name: docker-core-rolling
 
 on:
   workflow_run:
-    workflows: ["docker-base-rolling"]
+    workflows: ["docker-desktop-rolling"]
     types:
       - completed
 
