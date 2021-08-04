@@ -2,6 +2,7 @@ name: Docker multiarch publish
 
 on:
   push:
+    tag: "no"
 
 jobs:
   buildandpush:
