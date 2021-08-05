@@ -1,8 +1,8 @@
-name: docker-desktop-rolling
+name: docker-base
 
 on:
   workflow_run:
-    workflows: ["docker-base-rolling"]
+    workflows: ["docker-core"]
     types:
       - completed
 
@@ -32,9 +32,30 @@ jobs:
       - name: Build and push to Docker Hub
         uses: docker/build-push-action@v2.5.0
         with:
-          context: ./sp_desktop/
-          file: ./sp_desktop/Dockerfile
+          context: ./sp_base/
+          file: ./sp_base/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/spdesktop_ros2:rolling
+            ${{ secrets.DOCKERHUB_USERNAME }}/spbase_ros2:rolling
+            ${{ secrets.DOCKERHUB_USERNAME }}/spbase_ros2:latest
+      
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v2.5.0
+        with:
+          context: ./sp_base/
+          file: ./sp_base/Dockerfile_foxy
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/spbase_ros2:foxy
+      
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v2.5.0
+        with:
+          context: ./sp_base/
+          file: ./sp_base/Dockerfile_galactic
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/spbase_ros2:galactic

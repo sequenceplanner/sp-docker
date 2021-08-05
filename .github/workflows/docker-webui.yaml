@@ -1,13 +1,13 @@
-name: docker-base-rolling
+name: docker-webui
 
 on:
   workflow_run:
-    workflows: ["docker-core-rolling"]
+    workflows: ["docker-desktop"]
     types:
       - completed
 
 jobs:
-  buildandpush:
+  buildandpush_webui:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,9 +32,30 @@ jobs:
       - name: Build and push to Docker Hub
         uses: docker/build-push-action@v2.5.0
         with:
-          context: ./sp_base/
-          file: ./sp_base/Dockerfile
+          context: ./sp_web_ui/
+          file: ./sp_web_ui/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/spbase_ros2:rolling
+            ${{ secrets.DOCKERHUB_USERNAME }}/spweb_ros2:rolling
+            ${{ secrets.DOCKERHUB_USERNAME }}/spweb_ros2:latest
+      
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v2.5.0
+        with:
+          context: ./sp_web_ui/
+          file: ./sp_web_ui/Dockerfile_foxy
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/spweb_ros2:foxy
+      
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v2.5.0
+        with:
+          context: ./sp_web_ui/
+          file: ./sp_web_ui/Dockerfile_galactic
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/spweb_ros2:galactic
