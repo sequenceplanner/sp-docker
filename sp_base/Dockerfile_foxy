@@ -6,10 +6,12 @@ RUN apt-get update -qqy \
     llvm-dev \
     libclang-dev \
     clang \
+    curl \
  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
  && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN cargo install cargo-chef --locked
+RUN /root/.cargo/bin/cargo install cargo-chef --locked
+
 
 COPY entrypoint.sh  /
 RUN chmod +x /entrypoint.sh / 
