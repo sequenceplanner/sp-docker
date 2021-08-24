@@ -13,12 +13,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
     x11-apps \
     xfce4 \
     wget \
+    libgtk-3-dev \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir ~/.vnc \
  && echo "#!/bin/sh\nstartxfce4" > ~/.vnc/xstartup \
  && chmod +x ~/.vnc/xstartup 
 
-COPY entrypoint.sh launch.bash /
+COPY launch_novnc.sh launch.bash /
 COPY launch.desktop /root/.config/autostart/
-RUN chmod +x entrypoint.sh launch.bash /root/.config/autostart/launch.desktop
-CMD /entrypoint.sh
+RUN chmod +x launch_novnc.sh launch.bash /root/.config/autostart/launch.desktop
+RUN echo 'source /entrypoint.sh' >> ~/.bashrc 
+
+CMD /launch_novnc.sh

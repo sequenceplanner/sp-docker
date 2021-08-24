@@ -1,15 +1,7 @@
 FROM ros:galactic-ros-base-focal
 
-# FastDDS
-RUN apt-get update -qqy \
- && apt-get install -qqy curl\
- && curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg \
- && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null \
- && apt-get update -qqy \
- && apt-get install -qqy \
-    ros-galactic-rmw-fastrtps-cpp \
- && rm -rf /var/lib/apt/lists/* 
-ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp ROS_DOMAIN_ID=0
+RUN echo "net.core.rmem_max=8388608\nnet.core.rmem_default=8388608\n" | tee /etc/sysctl.d/60-cyclonedds.conf
 
 # rust
 RUN apt-get update -qqy \
@@ -20,9 +12,10 @@ RUN apt-get update -qqy \
  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
  && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN cargo install cargo-chef --locked
 
-COPY entrypoint.sh super_client.xml /
-RUN chmod +x /entrypoint.sh / super_client.xml
+COPY entrypoint.sh  /
+RUN chmod +x /entrypoint.sh / 
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]

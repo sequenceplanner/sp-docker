@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-if [[ -n "${ROS_DISCOVERY_SERVER}" ]]; then
-  export FASTRTPS_DEFAULT_PROFILES_FILE="/super_client.xml"
-  sed -i "s|<address>192.168.1.2|<address>${ROS_DISCOVERY_SERVER}|g" /super_client.xml
+# Set cyclone network interface
+if [[ -n "${ROS_INTERFACE}" ]]; then
+  export CYCLONEDDS_URI="<CycloneDDS><Domain><General><NetworkInterfaceAddress>${ROS_INTERFACE}</></></></>"
 fi
 
 # setup ros2 environment

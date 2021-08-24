@@ -1,5 +1,3 @@
-!#/bin/bash
-
 # stop the screen saver
 killall light-locker
 
