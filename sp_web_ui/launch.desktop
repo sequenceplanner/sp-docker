@@ -2,7 +2,7 @@
 Version=1.0
 Name=Test        
 Comment=launch ros windows etc
-Exec=bash -c '/launch.bash;$SHELL'
+Exec=bash -c '/launch_first.bash;$SHELL'
 Icon=utilities-terminal
 Terminal=true 
 Type=Application

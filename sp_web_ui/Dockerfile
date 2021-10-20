@@ -19,9 +19,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
  && echo "#!/bin/sh\nstartxfce4" > ~/.vnc/xstartup \
  && chmod +x ~/.vnc/xstartup 
 
-COPY launch_novnc.sh launch.bash /
+COPY launch_novnc.bash launch_first.bash /
 COPY launch.desktop /root/.config/autostart/
-RUN chmod +x launch_novnc.sh launch.bash /root/.config/autostart/launch.desktop
+RUN chmod +x launch_novnc.bash launch_first.bash /root/.config/autostart/launch.desktop
 RUN echo 'source /entrypoint.sh' >> ~/.bashrc 
 
-CMD /launch_novnc.sh
+CMD /launch_novnc.bash
