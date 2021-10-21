@@ -22,6 +22,5 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy \
 COPY launch_novnc.bash launch_first.bash /
 COPY launch.desktop /root/.config/autostart/
 RUN chmod +x launch_novnc.bash launch_first.bash /root/.config/autostart/launch.desktop
-RUN echo 'source /entrypoint.sh' >> ~/.bashrc 
 
-CMD /launch_novnc.bash
+CMD ["/launch_novnc.bash"]
