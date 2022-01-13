@@ -14,4 +14,3 @@ sp_ui: To be use when UIs are needed or rviz. \
 includes: sp_desktop, noVNC, etc
 
 To build sp_desktop, build before sp_base.
-
