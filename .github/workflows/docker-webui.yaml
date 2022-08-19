@@ -44,11 +44,11 @@ jobs:
         uses: docker/build-push-action@v2.5.0
         with:
           context: ./sp_web_ui/
-          file: ./sp_web_ui/Dockerfile_foxy
+          file: ./sp_web_ui/Dockerfile_humble
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/spweb_ros2:foxy
+            ${{ secrets.DOCKERHUB_USERNAME }}/spweb_ros2:humble
       
       - name: Build and push to Docker Hub
         uses: docker/build-push-action@v2.5.0

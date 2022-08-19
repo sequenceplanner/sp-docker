@@ -1,4 +1,7 @@
-FROM ros:foxy-ros-base-focal
+FROM ros:humble-ros-base
+
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp ROS_DOMAIN_ID=0
+RUN echo "net.core.rmem_max=8388608\nnet.core.rmem_default=8388608\n" | tee /etc/sysctl.d/60-cyclonedds.conf
 
 # rust
 RUN apt-get update -qqy \
@@ -7,11 +10,11 @@ RUN apt-get update -qqy \
     libclang-dev \
     clang \
     curl \
+    ros-humble-rmw-cyclonedds-cpp
  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
  && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN /root/.cargo/bin/cargo install cargo-chef --locked
-
 
 COPY entrypoint.sh  /
 RUN chmod +x /entrypoint.sh / 
