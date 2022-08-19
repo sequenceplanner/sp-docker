@@ -10,7 +10,7 @@ RUN apt-get update -qqy \
     libclang-dev \
     clang \
     curl \
-    ros-humble-rmw-cyclonedds-cpp
+    ros-humble-rmw-cyclonedds-cpp \
  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
  && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/root/.cargo/bin:${PATH}"
