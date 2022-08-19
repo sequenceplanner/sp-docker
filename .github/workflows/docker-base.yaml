@@ -1,6 +1,8 @@
 name: docker-base
 
 on:
+  workflow_dispatch:
+  
   workflow_run:
     workflows: ["docker-core"]
     types:
